@@ -8,6 +8,6 @@ node('master'){
     }
 
     stage('Test') {
-        sh 'docker run 30111993/cu-service npm list mdfd'
+        sh 'docker run 30111993/cu-service npm run dev'
     }
 }
