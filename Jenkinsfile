@@ -7,7 +7,7 @@ node('master'){
         docker.build("30111993/cu-service")
     }
 
-    docker.stage('Test') {
+    stage('Test') {
         docker.image('30111993/cu-service').inside {
             sh 'node --version'
             sh 'npm list mocha'
