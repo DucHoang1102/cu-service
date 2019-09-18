@@ -2,7 +2,7 @@
 # APP_ENV=development || production
 
 APP_NAME=cu-service
-APP_URL=http://localhost
+APP_URL=http://192.168.1.217
 APP_PORT=8080
 APP_ENV=development
 APP_DEBUG=true

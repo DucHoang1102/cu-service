@@ -3,11 +3,10 @@ node('master'){
 
     stage('Build') {
         checkout scm
-        echo 'Nguyen Duc Hoang'
-        docker.build("30111993/cu-service")
+        docker.build("cu-service-test")
     }
 
     stage('Test') {
-        sh 'docker run 30111993/cu-service npm run test'
+        sh 'docker run cu-service-test npm run test'
     }
 }
