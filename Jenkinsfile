@@ -9,9 +9,7 @@ node('master'){
 
     stage('Test') {
         docker.image('30111993/cu-service').inside {
-            sh 'node --version'
             sh 'npm list mocha'
-            sh 'npm run test'
         }
     }
 }
