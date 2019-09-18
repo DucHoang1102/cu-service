@@ -9,7 +9,7 @@ node('master'){
 
     stage('Test') {
         docker.image('30111993/cu-service').inside {
-            sh 'npm list mocha'
+            sh 'npm list mongoose'
         }
     }
 }
