@@ -6,6 +6,7 @@ node('master') {
 
         stage('Build') {
             def d = docker.build(name_image)
+            echo d
         }
 
         stage('Test') {
@@ -22,6 +23,5 @@ node('master') {
 
     finally {
         echo 'This is finally'
-        echo name_image
     }
 }
