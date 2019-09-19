@@ -1,11 +1,12 @@
 node('master') {
     def name_image = 'cu-service-test'
+    def dddd = ''
 
     try {
         checkout scm
 
         stage('Build') {
-            def dddd = docker.build(name_image)
+            dddd = docker.build(name_image)
         }
 
         stage('Test') {
