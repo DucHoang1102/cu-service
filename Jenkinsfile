@@ -6,7 +6,6 @@ node('master') {
 
         stage('Build') {
             docker.build(name_image)
-            echo d
         }
 
         stage('Test') {
