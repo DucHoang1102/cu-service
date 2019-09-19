@@ -10,7 +10,7 @@ node('master') {
 
         stage('Test') {
             docker.image(name_image).withRun('') { container ->
-                sh "docker exec ${container.id} npm run test"
+                sh "docker exec ${container.id} npm run testt"
                 echo 'Success!!!'
             }
         }
