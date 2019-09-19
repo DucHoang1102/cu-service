@@ -17,10 +17,11 @@ node('master') {
     }
 
     catch(e) {
+        throw e
     }
 
     finally {
         echo 'This is finally'
-        echo d
+        echo d.id
     }
 }
