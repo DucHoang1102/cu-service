@@ -22,6 +22,6 @@ node('master') {
 
     finally {
         echo 'This is finally'
-        echo d.id
+        echo name_image
     }
 }
