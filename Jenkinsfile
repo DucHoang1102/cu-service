@@ -22,7 +22,6 @@ node('master') {
     }
 
     finally {
-        echo 'This is finally'
-        echo this_image.id
+        sh "docker rmi -f ${this_image.id}"
     }
 }
