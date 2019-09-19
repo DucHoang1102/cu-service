@@ -1,16 +1,16 @@
 node('master') {
     def name_image = 'cu-service-test'
-    def dddd = ''
+    def this_image = null
 
     try {
         checkout scm
 
         stage('Build') {
-            dddd = docker.build(name_image)
+            this_image = docker.build(name_image)
         }
 
         stage('Test') {
-            dddd.withRun('') { container ->
+            this_image.withRun('') { container ->
                 sh "docker exec ${container.id} npm run test"
                 echo 'Success!!!'
             }
@@ -23,5 +23,6 @@ node('master') {
 
     finally {
         echo 'This is finally'
+        echo this_image.id
     }
 }
