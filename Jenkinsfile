@@ -5,12 +5,11 @@ node('master') {
         checkout scm
 
         stage('Build') {
-            def d = docker.build(name_image)
-            d.rm()
+            def dddd = docker.build(name_image)
         }
 
         stage('Test') {
-            docker.image(name_image).withRun('') { container ->
+            dddd.withRun('') { container ->
                 sh "docker exec ${container.id} npm run test"
                 echo 'Success!!!'
             }
