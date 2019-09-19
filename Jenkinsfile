@@ -17,7 +17,6 @@ node('master') {
     }
 
     catch(e) {
-        throw e
     }
 
     finally {
