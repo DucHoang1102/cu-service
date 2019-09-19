@@ -15,4 +15,8 @@ node('master'){
             echo 'Success'
         }
     }
+
+    post {
+        echo 'haha'
+    }
 }
