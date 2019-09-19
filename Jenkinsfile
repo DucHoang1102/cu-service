@@ -13,7 +13,6 @@ node('master') {
                 sh "docker exec ${container.id} npm run test"
                 echo 'Success!!!'
             }
-            echo CurrentBuild.result
         }
 
     }
