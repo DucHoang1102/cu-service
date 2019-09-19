@@ -6,7 +6,7 @@ node('master') {
 
         stage('Build') {
             def d = docker.build(name_image)
-            d.remove()
+            d.rm()
         }
 
         stage('Test') {
