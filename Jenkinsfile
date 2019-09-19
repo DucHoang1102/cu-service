@@ -7,12 +7,12 @@ node('master'){
     stage('Build') {
         checkout scm
         def d = docker.build(docker_name)
+        echo d.id
     }
 
     stage('Test') {
         docker.image(docker_name).withRun('') { c ->
             sh "docker exec ${c.id} npm run test"
-            echo d.id
             echo 'Success'
         }
     }
