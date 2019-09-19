@@ -6,7 +6,7 @@ node('master') {
 
         stage('Build') {
             def d = docker.build(name_image)
-            echo d.toString()
+            echo env.BUILD_ID
         }
 
         stage('Test') {
