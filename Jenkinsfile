@@ -1,14 +1,16 @@
 node('master'){
     checkout scm
 
+    def docker_name = 'cu-service-test'
+    
     stage('Build') {
         checkout scm
-        docker.build('cu-service-test')
+        docker.build(docker_name)
     }
 
     stage('Test') {
-        docker.image('cu-service-test').withRun('') { c ->
-            echo c.toString()
+        docker.image(docker_name).withRun('') { c ->
+            echo c.id
             sh 'node --version'
             sh 'npm run test'
         }
