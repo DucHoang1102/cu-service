@@ -8,7 +8,7 @@ node('master'){
 
     stage('Test') {
         docker.image('cu-service-test').withRun('') { c ->
-            echo c.id
+            echo c
             sh 'node --version'
             sh 'npm run test'
         }
