@@ -19,7 +19,6 @@ node('master') {
 
     catch(e) {
         echo 'This is error!'
-        throw e
     }
 
     finally {
