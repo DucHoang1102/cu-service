@@ -1,62 +1,60 @@
 node('master') {
     // CI -> trigger branch: `developer`
-    def name_image = 'cu-service-test'
-    def this_image = null
+    if (env.BRANCH_NAME == 'developer') {
+        checkout scm
 
-    checkout scm
+        def name_image = 'cu-service-test'
+        def this_image = null
 
-    stage('1.Build') {
-        this_image = docker.build(name_image)
-        echo env.BRANCH_NAME
-    }
-
-    stage('2.Test(end)') {
-        this_image.withRun('') { container ->
-            sh "docker exec ${container.id} npm run test"
-            echo 'Success!!!'
+        stage('1.Build') {
+            this_image = docker.build(name_image)
+            echo env.BRANCH_NAME
         }
 
-        sh "docker rmi -f ${this_image.id}"
-    }    
+        stage('2.Test(end)') {
+            this_image.withRun('') { container ->
+                sh "docker exec ${container.id} npm run test"
+                echo 'Success!!!'
+            }
+
+            sh "docker rmi -f ${this_image.id}"
+        } 
+    }   
 
     // CD -> trigger branch: `master`
-    // if (env.GIT_BRANCH == 'master') {
+    if (env.BRANCH_NAME == 'master') {
+        checkout scm
 
-    // }
+        def name_image = 'cu-service'
+        def this_image = null
+
+        stage('1.Build') {
+            echo 'This is build'
+        }
+
+        stage('2.Unit test') {
+            echo 'This is test'
+        }
+
+        stage('3.Push docker') {
+            echo 'This is push docker'
+        }
+
+        stage('4.Delivery -> STAGING-SERVER') {
+            echo 'This is delivery staging'
+        }
+
+        stage('5.Test in staging') {
+            echo 'This is test in staging'
+        }
+
+        stage('6.Deploy -> PRODUCT-SERVER') {
+            echo 'This is deploy product server'
+        }
+
+        stage('7.Test post deploy') {
+            echo 'This is post deploy'
+        }
+    }
     
 }
-
-// node('master') {
-//     def name_image = 'cu-service'
-//     def this_image = null
-
-//     checkout scm
-
-//     stage('1.Build') {
-
-//     }
-
-//     stage('2.Unit test') {
-        
-//     }
-
-//     stage('3.Push docker') {
-        
-//     }
-
-//     stage('4.Delivery -> STAGING-SERVER') {
-        
-//     }
-
-//     stage('5.Test in staging') {
-
-//     }
-
-//     stage('6.Deploy -> PRODUCT-SERVER') {
-
-//     }
-
-//     stage('7.Test post deploy') {
-
-//     }
-// }
