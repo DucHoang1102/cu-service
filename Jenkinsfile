@@ -4,11 +4,11 @@ node('master') {
         checkout scm
 
         def name_image = 'cu-service-test'
+        def dockerfile = 'dockerfile'
         def this_image = null
 
         stage('1.Build') {
-            this_image = docker.build(name_image)
-            echo env.BRANCH_NAME
+            this_image = docker.build(name_image, dockerfile)
         }
 
         stage('2.Test(end)') {
@@ -25,7 +25,8 @@ node('master') {
     if (env.BRANCH_NAME == 'master') {
         checkout scm
 
-        def name_image = 'cu-service'
+        def name_image = '30111993/cu-service'
+        def dockerfile = 'dockerfile-dev'
         def this_image = null
 
         stage('1.Build') {
