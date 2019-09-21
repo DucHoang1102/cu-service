@@ -52,7 +52,7 @@ node('master') {
             echo 'This is deploy product server'
         }
 
-        stage('7.Test post deploy') {
+        stage('7.Test post deploy(end)') {
             echo 'This is post deploy'
         }
     }
