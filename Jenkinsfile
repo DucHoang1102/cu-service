@@ -1,5 +1,6 @@
-if (env.GIT_BRANCH == 'master') {
-    node('master') {
+node('master') {
+    // CI -> trigger branch: `developer`
+    if (env.GIT_BRANCH == 'master') {
         def name_image = 'cu-service-test'
         def this_image = null
 
@@ -16,8 +17,12 @@ if (env.GIT_BRANCH == 'master') {
             }
 
             sh "docker rmi -f ${this_image.id}"
-        }
+        }    
     }
+
+    // CD -> trigger branch: `master`
+    // if (env.GIT_BRANCH == 'master')
+    
 }
 
 // node('master') {
