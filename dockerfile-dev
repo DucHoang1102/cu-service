@@ -1,3 +1,4 @@
+# CI: DEV-ENV
 FROM node:10
 
 # Create app directory
