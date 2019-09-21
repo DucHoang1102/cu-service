@@ -4,11 +4,11 @@ node('master') {
         checkout scm
 
         def name_image = 'cu-service-test'
-        def dockerfile = './dockerfile-dev'
+        def dockerfile = 'dockerfile-dev'
         def this_image = null
 
         stage('1.Build') {
-            this_image = docker.build(name_image, dockerfile)
+            this_image = docker.build(name_image, "-f ${dockerfile}")
         }
 
         stage('2.Test(end)') {
