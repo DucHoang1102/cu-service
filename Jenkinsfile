@@ -6,6 +6,7 @@ node('master') {
     checkout scm
 
     stage('1.Build') {
+        checkout scm
         this_image = docker.build(name_image)
         echo env.GIT_BRANCH
     }
