@@ -4,7 +4,7 @@ node('master') {
         checkout scm
 
         def name_image = 'cu-service-test'
-        def dockerfile = 'dockerfile'
+        def dockerfile = './dockerfile'
         def this_image = null
 
         stage('1.Build') {
