@@ -1,4 +1,5 @@
 node('master') {
+    echo env.GIT_BRANCH
     // CI -> trigger branch: `developer`
     if (env.GIT_BRANCH == 'master') {
         def name_image = 'cu-service-test'
@@ -21,7 +22,9 @@ node('master') {
     }
 
     // CD -> trigger branch: `master`
-    // if (env.GIT_BRANCH == 'master')
+    // if (env.GIT_BRANCH == 'master') {
+
+    // }
     
 }
 
