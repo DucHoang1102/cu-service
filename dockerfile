@@ -7,7 +7,11 @@ WORKDIR /usr/src/app
 # Bundle app source
 COPY . .
 
+# Generate .env file
+RUN mv .envpro .env
+
 RUN npm install --production
+
 # For production
 RUN npm ci --only=production
 

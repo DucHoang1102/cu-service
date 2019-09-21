@@ -26,11 +26,10 @@ node('master') {
         checkout scm
 
         def name_image = '30111993/cu-service'
-        def dockerfile = 'dockerfile-dev'
         def this_image = null
 
         stage('1.Build') {
-            echo 'This is build'
+            this_image = docker.build(name_image)
         }
 
         stage('2.Unit test') {
