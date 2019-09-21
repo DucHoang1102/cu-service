@@ -1,25 +1,23 @@
 node('master') {
-    echo env.GIT_BRANCH
     // CI -> trigger branch: `developer`
-    if (env.GIT_BRANCH == 'master') {
-        def name_image = 'cu-service-test'
-        def this_image = null
+    def name_image = 'cu-service-test'
+    def this_image = null
 
-        checkout scm
+    checkout scm
 
-        stage('1.Build') {
-            this_image = docker.build(name_image)
+    stage('1.Build') {
+        this_image = docker.build(name_image)
+        echo env.GIT_BRANCH
+    }
+
+    stage('2.Test(end)') {
+        this_image.withRun('') { container ->
+            sh "docker exec ${container.id} npm run test"
+            echo 'Success!!!'
         }
 
-        stage('2.Test(end)') {
-            this_image.withRun('') { container ->
-                sh "docker exec ${container.id} npm run test"
-                echo 'Success!!!'
-            }
-
-            sh "docker rmi -f ${this_image.id}"
-        }    
-    }
+        sh "docker rmi -f ${this_image.id}"
+    }    
 
     // CD -> trigger branch: `master`
     // if (env.GIT_BRANCH == 'master') {
