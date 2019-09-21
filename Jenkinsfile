@@ -37,7 +37,7 @@ node('master') {
         }
 
         stage('3.Push docker') {
-            echo 'This is push docker'
+            this_image.push()
         }
 
         stage('4.Delivery -> STAGING-SERVER') {
